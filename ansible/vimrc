@@ -1,0 +1,95 @@
+set number
+set autoindent
+set hlsearch
+set wrap
+set list
+set listchars=tab:>-,trail:$
+syntax on
+set foldmethod=syntax
+set encoding=utf-8
+set shiftwidth=4
+auto FileType java :set dictionary=j2se14.dict
+auto FileType c :set dictionary=c.dict
+auto FileType c :setlocal shiftwidth=4 
+auto FileType cpp :setlocal shiftwidth=4
+auto FileType ml :setlocal shiftwidth=4
+auto FileType hs :setlocal shiftwidth=4
+auto FileType haskell :setlocal shiftwidth=4
+auto FileType omlet :setlocal shiftwidth=2
+" vimにcoffeeファイルタイプを認識させる
+au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+" インデントを設定
+autocmd FileType coffee     setlocal sw=2 sts=2 ts=2 et
+autocmd FileType javascript     setlocal sw=2 sts=2 ts=2 et
+autocmd FileType scala setlocal sw=2 sts=2 ts=2
+autocmd FileType ruby setlocal sw=2 sts=2 ts=2
+autocmd FileType css setlocal sw=2 sts=2 ts=2
+autocmd FileType scss setlocal sw=2 sts=2 ts=2
+autocmd FileType ts setlocal sw=2 sts=2 ts=2
+autocmd FileType asm setlocal noexpandtab
+autocmd FileType lnk setlocal noexpandtab
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+set statusline=%F%m%r%h%w\ TYPE=%Y\ POS=%04l,%04v\ LEN=%L
+set wildmode=list:longest
+set t_Co=256
+
+set laststatus=2
+
+set expandtab
+set ts=4
+
+auto FileType java :set foldmethod=marker foldmarker={,}
+
+set encoding=utf8
+set fileencodings=utf-8,iso-2022-jp,sjis,euc-jp
+
+
+autocmd FileType scheme :let is_gauche=1
+
+imap OA <Up>
+imap OB <Down>
+imap OC <Right>
+imap OD <Left>
+
+"vim japanese
+" 「日本語入力固定モード」切替キー
+inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
+" PythonによるIBus制御指定
+let IM_CtrlIBusPython = 1
+
+"for vundle
+filetype off
+
+"key bind
+nmap <F5>   :make<CR>
+nmap <C-F5>   :make clean all<CR>
+nnoremap <Leader>gp :!git push<CR>
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
+
+
+"ふぇぇ☆*✲ﾟ*｡(((´♡‿♡`+)))｡*ﾟ✲*☆10万円ほしいでしゅ
+"
+
+filetype plugin indent on
+
+"localrc.vim
+:let g:localrc_filename = ".local.vimrc"
+
+
+
+"others
+
+filetype plugin indent on
+
+"vim-power line
+set guifont=Inconsolata-Powerline:h11
+"let g:Powerline_symbols = 'fancy'
+
+"colorscheme pyte
+
+

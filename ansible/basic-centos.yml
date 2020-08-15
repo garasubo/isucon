@@ -2,45 +2,41 @@
 
 - name: install basic element
   hosts: all
-  user: root
+  user: isucon
+  become: yes
   tasks:
   - name: install packages
-    apt:
+    yum:
       name: "{{ packages }}"
     vars:
       packages:
       - git
       - vim
       - curl
+      - net-tools
       - wget
       - gcc
-      - net-tools
       - keepalived
+      - epel-release
+  - name: install from epel
+    yum:
+      name: "{{ packages }}"
+      enablerepo: epel
+      state: latest
+    vars:
+      packages:
       - etckeeper
-      - denyhosts
+      - redis
 
   - shell: etckeeper vcs status
     register: etckeeper_result
     ignore_errors: True
-
   - name: init with etckeeper
     shell: etckeeper init && etckeeper commit -m "first commit"
     when: etckeeper_result.rc != 0
-
-  - shell: git config --global user.email "garasubo@gmail.com"
-  - shell: git config --global user.name "garasubo"
 
   - name: install netdata
     shell: bash <(curl -Ssf https://my-netdata.io/kickstart-static64.sh) --dont-wait --dont-start-it
     args:
       executable: /bin/bash
 
-  - name: copy vimrc
-    copy:
-      src: ./vimrc
-      dest: /root/.vimrc
-      force: no
-  - name: enable denyhosts
-    systemd:
-      state: started
-      name: denyhosts
