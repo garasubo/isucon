@@ -3,7 +3,7 @@
 [isucon](https://github.com/isucon)
 
 
-過去問の実行環境を整えたいならここにvagrantとansibleを使うと便利
+過去問の実行環境を整えたいならここのvagrantとansibleを使うと便利
 [matsuu/vagrant-isucon](https://github.com/matsuu/vagrant-isucon)
 
 ## テクニック
