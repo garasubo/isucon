@@ -1,0 +1,9 @@
+---
+- name: setup for isucon10 env
+  hosts: all
+  roles:
+    - common
+    - role: hurricanehrndz.rustup
+  tasks:
+    - name: rustup init
+      shell: ~/.cargo/bin/rustup default stable

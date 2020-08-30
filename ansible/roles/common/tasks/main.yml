@@ -1,0 +1,52 @@
+---
+- name: install packages
+  become: true
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - git
+    - vim
+    - curl
+    - wget
+    - gcc
+    - net-tools
+    - keepalived
+    - etckeeper
+    - denyhosts
+
+- shell: etckeeper vcs status
+  become: true
+  register: etckeeper_result
+  ignore_errors: True
+
+- name: init with etckeeper
+  become: true
+  shell: etckeeper init && etckeeper commit -m "first commit"
+  when: etckeeper_result.rc != 0
+
+- shell: git config --global user.email "garasubo@gmail.com"
+- shell: git config --global user.name "garasubo"
+
+- name: install netdata
+  shell: bash <(curl -Ssf https://my-netdata.io/kickstart-static64.sh) --dont-wait --dont-start-it
+  args:
+    executable: /bin/bash
+
+- name: copy vimrc
+  copy:
+    src: ./vimrc
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    force: no
+- name: enable denyhosts
+  systemd:
+    state: started
+    name: denyhosts
+
+- name: add editor env var
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    create: yes
+    block: |
+      EDITOR=vim
+
