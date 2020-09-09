@@ -14,6 +14,9 @@
     - keepalived
     - etckeeper
     - denyhosts
+    - linux-tools-common
+    - linux-tools-generic
+    - logrotate
 
 - shell: etckeeper vcs status
   become: true
@@ -48,5 +51,6 @@
     path: "{{ ansible_env.HOME }}/.bashrc"
     create: yes
     block: |
-      EDITOR=vim
+      export EDITOR=vim
+      alias sctl='systemctl'
 
