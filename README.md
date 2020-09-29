@@ -38,8 +38,16 @@
 大体、mysqlの[N+1問題](https://www.techscore.com/blog/2012/12/25/rails%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E7%B4%B9%E4%BB%8B-n1%E5%95%8F%E9%A1%8C%E3%82%92%E6%A4%9C%E5%87%BA%E3%81%99%E3%82%8B%E3%80%8Cbullet%E3%80%8D/)を潰すのが大きな仕事だったりするので、mysqlの文法はきちんと勉強しておくといい
 - [チートシート](https://www.mysqltutorial.org/mysql-cheat-sheet.aspx)
 
-チューニングはスロークエリの監視及び[MySQLTuner](https://github.com/major/MySQLTuner-perl)を使って何が悪いかを突き止めるといいかも？
+チューニングはまずはスロークエリのしきい値を0にしてしまってから[pt-query-digest](https://www.percona.com/software/database-tools/percona-toolkit)で解析してあげると、どのクエリが頻繁に呼ばれているか、どこを集中的にチューニングするべきかがわかる。
+参考：[スローログの集計に便利な「pt-query-digest」を使ってみよう](https://thinkit.co.jp/article/9617)
+
+Rows sentがRow examineに対して大きすぎる場合、indexを貼り直すことを検討する。複合インデックスを用意しておいた場合でも`FORCE INDEX`句を付けないとちゃんときかないこともあるので`EXPLAIN`句でどのインデックスが実際に使われているか確認する。
+参考：[オトコのソートテクニック2008](http://nippondanji.blogspot.com/2008/12/2008.html)
+
+さらなるチューニング（クエリキャッシュのサイズなど）は[MySQLTuner](https://github.com/major/MySQLTuner-perl)を使って何が悪いかを突き止めるといいかも？
 参考：[MySQLデータベースのパフォーマンスチューニング](https://qiita.com/mm-Genqiita/items/3ef91f6df6c15c620ec6)
+
+
 
 ### ansible
 このレポジトリの下に過去に自分が使ったansibleが置かれている。コンテスト開始直後にとりあえず走らせるというのができると気が楽なのでおすすめ。複数サーバーに対しても走らせられるし。
