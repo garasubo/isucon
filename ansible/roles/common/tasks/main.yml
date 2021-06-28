@@ -10,10 +10,6 @@
     - curl
     - wget
     - gcc
-    - net-tools
-    - keepalived
-    - etckeeper
-    - denyhosts
     - linux-tools-common
     - linux-tools-generic
     - logrotate
@@ -41,10 +37,6 @@
     src: ./vimrc
     dest: "{{ ansible_env.HOME }}/.vimrc"
     force: no
-- name: enable denyhosts
-  systemd:
-    state: started
-    name: denyhosts
 
 - name: add editor env var
   blockinfile:
