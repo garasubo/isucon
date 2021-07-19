@@ -13,6 +13,7 @@
     - linux-tools-common
     - linux-tools-generic
     - logrotate
+    - etckeeper
 
 - shell: etckeeper vcs status
   become: true
@@ -27,11 +28,6 @@
 - shell: git config --global user.email "garasubo@gmail.com"
 - shell: git config --global user.name "garasubo"
 
-- name: install netdata
-  shell: bash <(curl -Ssf https://my-netdata.io/kickstart-static64.sh) --dont-wait --dont-start-it
-  args:
-    executable: /bin/bash
-
 - name: copy vimrc
   copy:
     src: ./vimrc
@@ -44,5 +40,6 @@
     create: yes
     block: |
       export EDITOR=vim
+      export SUDO_EDITOR=vim
       alias sctl='systemctl'
 

@@ -1,0 +1,6 @@
+---
+- name: setup for isucon11nsible  env
+  hosts: all
+  roles:
+    - common
+    - netdata
