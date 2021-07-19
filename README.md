@@ -108,6 +108,24 @@ Rows sentがRow examineに対して大きすぎる場合、indexを貼り直す�
 - [nginxパフォーマンスチューニング〜静的コンテンツ配信編〜](https://qiita.com/cubicdaiya/items/2763ba2240476ab1d9dd)
 - 静的ファイルをアップロード＆ダウンロードを複数サーバーでやるには`try_files`が便利そう。参考: [nginx serve from static if not found try reverse proxy](https://stackoverflow.com/questions/28572392/nginx-serve-from-static-if-not-found-try-reverse-proxy/28578419)
 
+## 便利そうだが自分は使ったことのないもの
+
+### Varnish
+[公式ドキュメント](https://varnish-cache.org/docs/index.html)
+
+キャッシュ機能を持つリバースプロキシとして使える。nginxとウェブアプリの間に挟むことでレスポンスを手軽にキャッシュできるらしい
+
+### Redis
+[公式ドキュメント](https://redis.io/documentation)
+
+Key-Value型のインメモリデータベース。データベースの一部カラムをRedisで管理することで高速化できたりするはずだが、大抵変更量が多くて下手に手を出してもうまくいかないことが多いように思える（個人の感想）。
+使うつもりなら事前練習をしっかり積んだほうがいい。
+
+### Proxy SQL
+[公式ドキュメント](https://proxysql.com/documentation/)
+
+MySQL 8以降だとクエリキャッシュが効かない。かわりにProxySQLをかますなどでキャッシュできる。
+が、本来の用途は冗長化とかにあるっぽいので、果たして有効な手段かわからない。
 
 
 ## 過去の講評とか
