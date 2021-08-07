@@ -1,0 +1,36 @@
+---
+- set_fact:
+    swap_file_path: /swapfile
+    swap_file_mb: 2048
+- name: check swap enabled
+  become: true
+  stat:
+    path: "{{ swap_file_path }}"
+  register: swapfile
+- name: create swap file
+  become: true
+  command: dd if=/dev/zero of={{ swap_file_path }} bs=1M count={{ swap_file_mb }}
+  when: not swapfile.stat.exists
+- file:
+    path: '{{ swap_file_path }}'
+    mode: '0600'
+  become: true
+- command: file {{ swap_file_path }}
+  register: swap_file_test
+  become: true
+- command: mkswap {{ swap_file_path }}
+  become: true
+  when: swap_file_test.stdout.find('swap file') == -1
+- command: swapon /swapfile
+  become: true
+  when: swap_file_test.stdout.find('swap file') == -1
+- name: mount swap file
+  become: true
+  mount:
+    src: "{{ swap_file_path }}"
+    path: swap
+    fstype: swap
+    opts: defaults
+    passno: '0'
+    dump: '0'
+    state: present

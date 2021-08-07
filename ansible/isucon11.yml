@@ -4,3 +4,4 @@
   roles:
     - common
     - netdata
+    - add_swap

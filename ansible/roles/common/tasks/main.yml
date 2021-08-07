@@ -3,6 +3,7 @@
   become: true
   apt:
     name: "{{ packages }}"
+    update_cache: yes
   vars:
     packages:
     - git
@@ -14,6 +15,7 @@
     - linux-tools-generic
     - logrotate
     - etckeeper
+    - screen
 
 - shell: etckeeper vcs status
   become: true
