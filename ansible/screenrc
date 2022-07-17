@@ -1,6 +1,7 @@
 # Escape Key
 escape ^k.
 bind " " eval meta "echo 'operating the inner screen...'"
+shell zsh
 
 defencoding utf8
 encoding utf8 utf8
