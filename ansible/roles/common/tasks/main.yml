@@ -16,6 +16,7 @@
     - logrotate
     - etckeeper
     - screen
+    - zsh
 
 - shell: etckeeper vcs status
   become: true
@@ -45,3 +46,18 @@
       export SUDO_EDITOR=vim
       alias sctl='systemctl'
 
+- name: copy screenrc
+  copy:
+    src: ./screenrc
+    dest: "{{ ansible_env.HOME }}/.screenrc"
+    force: no
+
+- name: copy zshrc
+  copy:
+    src: ./zshrc
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    force: no
+
+- name: chsh to zsh
+  user:
+    shell: /bin/zsh

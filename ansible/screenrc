@@ -1,0 +1,55 @@
+# Escape Key
+escape ^k.
+bind " " eval meta "echo 'operating the inner screen...'"
+
+defencoding utf8
+encoding utf8 utf8
+cjkwidth off
+
+vbell off
+autodetach on
+startup_message off
+msgwait 5
+msgminwait 1
+defscrollback 30000
+mousetrack off
+
+# appearance (default)
+sorendition '= dd'
+hardstatus alwayslastline '%-w%{=b dY}%n %t%{-}%+w'
+caption always '%{b dy}%n %{bu dy}%t'
+
+# resize
+bind < resize -1
+bind > resize +1
+bind H resize -5
+bind L resize +5
+
+# mov
+bind ^h focus left
+bind ^j focus down
+bind ^k focus up
+bind ^l focus right
+bind h focus left
+bind j focus down
+bind k focus up
+bind l focus right
+
+# command!
+bind t screen
+
+# layout
+layout new 0
+layout new 1
+layout remove 2
+layout remove 3
+layout remove 4
+layout remove 5
+layout remove 6
+layout select 0
+bind ^n layout next
+bind n layout next
+
+bind ! redisplay
+
+# vim: set ft=screen:
