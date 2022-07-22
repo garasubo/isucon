@@ -28,3 +28,11 @@ function precmd() {
     echo ""
   fi
 }
+
+export EDITOR=vim
+export SUDO_EDITOR=vim
+alias sctl='systemctl'
+alias mysqld_edit='sudoedit /etc/mysql/mysql.conf.d/mysqld.cnf'
+alias mysqld_restart='sudo systemctl restart mysql'
+alias nginx_edit='sudoedit /etc/nginx/nginx.conf'
+alias nginx_restart='sudo systemctl restart nginx'

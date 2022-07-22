@@ -15,6 +15,7 @@
     - linux-tools-generic
     - logrotate
     - etckeeper
+    - tmux
     - screen
     - zsh
 
@@ -45,6 +46,11 @@
       export EDITOR=vim
       export SUDO_EDITOR=vim
       alias sctl='systemctl'
+      alias mysqld_edit='sudoedit /etc/mysql/mysql.conf.d/mysqld.cnf'
+      alias mysqld_restart='sudo systemctl restart mysql'
+      alias nginx_edit='sudoedit /etc/nginx/nginx.conf'
+      alias nginx_restart='sudo systemctl restart nginx'
+
 
 - name: copy screenrc
   copy:
@@ -59,5 +65,7 @@
     force: no
 
 - name: chsh to zsh
+  become: true
   user:
+    name: isucon
     shell: /bin/zsh
