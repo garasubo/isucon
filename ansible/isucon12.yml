@@ -1,0 +1,6 @@
+---
+- name: setup for isucon12
+  hosts: all
+  roles:
+    - common
+    - add_swap
