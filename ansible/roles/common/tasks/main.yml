@@ -34,7 +34,7 @@
 
 - name: copy vimrc
   copy:
-    src: ./vimrc
+    src: ./files/vimrc
     dest: "{{ ansible_env.HOME }}/.vimrc"
     force: no
 
@@ -54,14 +54,20 @@
 
 - name: copy screenrc
   copy:
-    src: ./screenrc
+    src: ./files/screenrc
     dest: "{{ ansible_env.HOME }}/.screenrc"
     force: no
 
 - name: copy zshrc
   copy:
-    src: ./zshrc
+    src: ./files/zshrc
     dest: "{{ ansible_env.HOME }}/.zshrc"
+    force: no
+
+- name: copy tmux.conf
+  copy:
+    src: ./files/tmux.conf
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
     force: no
 
 - name: chsh to zsh
