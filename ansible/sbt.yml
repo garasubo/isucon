@@ -1,9 +1,0 @@
----
-
-- name: install sbt
-  hosts: all
-  user: isucon
-  become: yes
-  tasks:
-  - name: run install-sbt.sh
-    script: ./install-sbt.sh

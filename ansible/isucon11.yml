@@ -1,7 +1,0 @@
----
-- name: setup for isucon11nsible  env
-  hosts: all
-  roles:
-    - common
-    - netdata
-    - add_swap
