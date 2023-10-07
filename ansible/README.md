@@ -5,8 +5,6 @@ Ubuntuならaptで入る
 
 ## Run
 hostsを更新した後、playbookを指定して実行
-- basic.yml: おそらく必ずインストールする必要があるもの一式をinstall
-- sbt.yml: sbtをインストール。それなりに時間がかかるので注意
 
 
 ```
