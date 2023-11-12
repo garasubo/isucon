@@ -18,6 +18,7 @@
     - tmux
     - screen
     - zsh
+    - xsel
 
 - shell: etckeeper vcs status
   become: true
