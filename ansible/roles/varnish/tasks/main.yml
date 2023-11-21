@@ -1,0 +1,10 @@
+---
+- name: install packages
+  become: true
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - varnish
+
